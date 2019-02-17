@@ -28,8 +28,6 @@ public class MyController {
         List<BaseVO> baseList = (List<BaseVO>) BM.baseList(vo);
         String hi = baseList.get(0).toString();
 
-
-
         return hi;
     }
 }
