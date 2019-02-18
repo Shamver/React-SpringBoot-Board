@@ -1,19 +1,20 @@
 package kr.co.board.vo;
 
 public class FamilyVO {
+    String id;
     String name;
     String relShip;
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return "FamilyVO{" +
-                "name='" + name + '\'' +
-                ", relShip='" + relShip + '\'' +
-                '}';
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -26,5 +27,13 @@ public class FamilyVO {
 
     public void setRelShip(String relShip) {
         this.relShip = relShip;
+    }
+
+    @Override
+    public String toString() {
+        return "FamilyVO{" +
+                "name='" + name + '\'' +
+                ", relShip='" + relShip + '\'' +
+                '}';
     }
 }

@@ -4,11 +4,14 @@
 <mapper namespace="kr.co.board.mapper.FamilyMapper">
 
     <select id="getFamilyList" resultType="FamilyVO">
-      SELECT name,rel_ship as relShip FROM FAMILY
+      SELECT id,name,rel_ship as relShip FROM FAMILY
     </select>
 
     <insert id="addFamily" parameterType="FamilyVO">
-      INSERT INTO FAMILY VALUES('${name}','${relShip}')
+      INSERT INTO FAMILY VALUES(
+      (SELECT MAX(id)+1 FROM FAMILY),
+      '${name}','${relShip}'
+      )
     </insert>
 
 </mapper>
