@@ -4,12 +4,28 @@
 <mapper namespace="kr.co.board.mapper.FamilyMapper">
 
     <select id="familyList" resultType="FamilyVO">
-        SELECT name, rel_Ship as relShip FROM FAMILY
+        SELECT id, name, rel_Ship as relShip FROM FAMILY
     </select>
 
     <insert id="familyInsert" parameterType="FamilyVO">
-        INSERT INTO FAMILY VALUES('${name}','${relShip}')
+        INSERT INTO FAMILY VALUES(
+        (SELECT NVL(MAX(id)+1,0) FROM FAMILY),
+        '${name}',
+        '${relShip}'
+        )
     </insert>
+
+    <update id="familyUpdate" parameterType="FamilyVO">
+        UPDATE FAMILY SET
+        name='${name}',
+        rel_ship='${relShip}'
+        WHERE id=${id}
+    </update>
+
+    <delete id="familyDelete" parameterType="FamilyVO">
+        DELETE FROM FAMILY
+        WHERE id=${id}
+    </delete>
 
 
 </mapper>

@@ -29,8 +29,29 @@ public class FamilyController {
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     @ResponseBody
     public boolean familyInsert(@RequestBody FamilyVO vo){
-        System.out.println(vo.toString());
         int result = fm.familyInsert(vo);
+        if(result == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean familyUpdate(@RequestBody FamilyVO vo){
+        int result = fm.familyUpdate(vo);
+        if(result == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean familyDelete(@RequestBody FamilyVO vo){
+        int result = fm.familyDelete(vo);
         if(result == 1){
             return true;
         } else {

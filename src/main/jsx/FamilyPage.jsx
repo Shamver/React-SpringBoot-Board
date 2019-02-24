@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
+import Family from './Family.jsx';
 
 class FamilyPage extends React.Component {
 
@@ -38,7 +39,9 @@ class FamilyPage extends React.Component {
         Axios.post("/family/get")
             .then((data) => {
                 this.setState({
-                    family: data.data
+                    family: data.data,
+                    name: "",
+                    relShip: ""
                 })
             })
             .catch((err) => {
@@ -70,10 +73,13 @@ class FamilyPage extends React.Component {
     render() {
         const familyList = () => (
             this.state.family.map(data => (
-                <tr>
-                    <td>{data.name}</td>
-                    <td>{data.relShip}</td>
-                </tr>
+                <Family
+                    key={data.id}
+                    id={data.id}
+                    name={data.name}
+                    relShip={data.relShip}
+                    getFamily={this.getFamily}
+                />
             ))
         )
 
@@ -87,9 +93,9 @@ class FamilyPage extends React.Component {
 
                 <form>
                     <span>이름: </span>
-                    <input type="text" name="name" onChange={this.valueChange} />
+                    <input type="text" name="name" value={this.state.name} onChange={this.valueChange} />
                     <span>관계: </span>
-                    <select name="relShip" onChange={this.valueChange}>
+                    <select name="relShip" value={this.state.relShip} onChange={this.valueChange}>
                         <option value="">선택하세요.</option>
                         <option value="부">부</option>
                         <option value="모">모</option>
@@ -100,11 +106,12 @@ class FamilyPage extends React.Component {
                     <button type="button" onClick={this.insertFamily}>등록</button>
                 </form>
 
-                <table style={{textAlign: 'center', border: '1px solid'}}>
+                <table border="1" style={{textAlign: 'center'}}>
                     <thead style={{borderBottom: '1px solid'}}>
                         <tr>
                             <td>이름</td>
                             <td>관계</td>
+                            <td colSpan="2">액션</td>
                         </tr>
                     </thead>
                     <tbody>

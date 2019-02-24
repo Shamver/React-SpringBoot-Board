@@ -1,6 +1,16 @@
 package kr.co.board.vo;
 
 public class FamilyVO {
+    Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     String name;
     String relShip;
 
@@ -23,7 +33,8 @@ public class FamilyVO {
     @Override
     public String toString() {
         return "FamilyVO{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", relShip='" + relShip + '\'' +
                 '}';
     }
