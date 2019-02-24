@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Family from './Family.jsx'
 import { Button , Table, Input, Col, Row} from 'reactstrap';
 
 class MainPage extends React.Component {
@@ -26,6 +27,7 @@ class MainPage extends React.Component {
 
     getFamilyList = () => {
         axios.post('/family/list', {
+
         })
             .then( response => {
                 this.setState({
@@ -82,11 +84,7 @@ class MainPage extends React.Component {
 
     render() {
         const list = this.state.familyList.map(data=> (
-            <tr key={data.id}>
-                <td className="d-none"><Input type="hidden" value={data.id}></Input></td>
-                <td>{data.name}</td>
-                <td>{data.relShip}</td>
-            </tr>
+            <Family name={data.name} relShip={data.relShip} id={data.id} key={data.id} getFamilyList={this.getFamilyList}/>
         ))
 
         return(
@@ -113,8 +111,10 @@ class MainPage extends React.Component {
                     <Table striped>
                         <thead>
                         <tr>
-                            <th>이름</th>
-                            <th>관계</th>
+                            <th width="200">이름</th>
+                            <th width="200">관계</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>

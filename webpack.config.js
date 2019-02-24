@@ -5,7 +5,8 @@ module.exports = {
     entry: {
         main: './MainPage.jsx',
         page1: './Page1Page.jsx',
-        family: './FamilyPage.jsx'
+        family: './FamilyPage.jsx',
+        familyInfo: './Family.jsx'
     },
     devtool: 'sourcemaps',
     cache: true,

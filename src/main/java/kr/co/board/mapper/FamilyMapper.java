@@ -11,4 +11,6 @@ import java.util.List;
 public interface FamilyMapper {
     List<FamilyVO> getFamilyList();
     int addFamily(FamilyVO family);
+    int updateFamily(FamilyVO family);
+    int deleteFamily(FamilyVO family);
 }

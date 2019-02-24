@@ -27,8 +27,21 @@ class FamilyController {
     @RequestMapping(value="/add")
     @ResponseBody
     public int addFamily(@RequestBody  FamilyVO family){
-        System.out.println(family);
         int result = familyMapper.addFamily(family);
+        return result;
+    }
+
+    @RequestMapping(value="/update")
+    @ResponseBody
+    public int updateFamily(@RequestBody  FamilyVO family){
+        int result = familyMapper.updateFamily(family);
+        return result;
+    }
+
+    @RequestMapping(value="/delete")
+    @ResponseBody
+    public int deleteFamily(@RequestBody  FamilyVO family){
+        int result = familyMapper.deleteFamily(family);
         return result;
     }
 }

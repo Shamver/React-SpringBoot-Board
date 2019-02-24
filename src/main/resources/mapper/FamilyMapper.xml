@@ -9,9 +9,20 @@
 
     <insert id="addFamily" parameterType="FamilyVO">
       INSERT INTO FAMILY VALUES(
-      (SELECT MAX(id)+1 FROM FAMILY),
+      (SELECT NVL(MAX(id),0)+1 FROM FAMILY),
       '${name}','${relShip}'
       )
     </insert>
 
+    <update id="updateFamily" parameterType="FamilyVO">
+        UPDATE FAMILY
+          SET NAME = '${name}' ,
+              REL_SHIP = '${relShip}'
+          WHERE ID = ${id}
+    </update>
+
+    <delete id="deleteFamily" parameterType="FamilyVO">
+        DELETE FROM FAMILY
+          WHERE ID = ${id}
+    </delete>
 </mapper>
